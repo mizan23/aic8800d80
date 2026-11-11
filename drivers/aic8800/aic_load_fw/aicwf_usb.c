@@ -1339,7 +1339,7 @@ static int aicloadfw_chipmatch(struct aic_usb_dev *usb_dev, u16 vid, u16 pid){
 	usb_dev->chipid = PRODUCT_ID_AIC8801;
 	AICWFDBG(LOGINFO, "%s USE AIC8801\r\n", __func__);
 	return 0;
-    }else if(pid == USB_DEVICE_ID_AIC_8800D80){
+    }else if(pid == USB_DEVICE_ID_AIC_8800D80 || pid == USB_DEVICE_ID_AIC_8800D84){
 	usb_dev->chipid = PRODUCT_ID_AIC8800D80;
 	AICWFDBG(LOGINFO, "%s USE AIC8800D80\r\n", __func__);
 	return 0;
@@ -1691,7 +1691,8 @@ static int aicwf_usb_probe(struct usb_interface *intf, const struct usb_device_i
         id->idProduct == USB_DEVICE_ID_AIC_8800D81 ||
 	    id->idProduct == USB_DEVICE_ID_AIC_8800D41 ||
 	    id->idProduct == USB_DEVICE_ID_AIC_8800D81X2 ||
-	    id->idProduct == USB_DEVICE_ID_AIC_8800D89X2)){
+	    id->idProduct == USB_DEVICE_ID_AIC_8800D89X2 ||
+	    id->idProduct == USB_DEVICE_ID_AIC_8800D84)){
 		return -1;
 	}
 
@@ -1862,6 +1863,8 @@ static struct usb_device_id aicwf_usb_id_table[] = {
     {USB_DEVICE(USB_VENDOR_ID_AIC_V2, USB_DEVICE_ID_AIC_8800D89X2)},
     {USB_DEVICE(USB_VENDOR_ID_AIC_V2, USB_DEVICE_ID_AIC_8800D40X2)},
     {USB_DEVICE(USB_VENDOR_ID_AIC_V2, USB_DEVICE_ID_AIC_8800D81)},   /* 368b:8d81 */
+    {USB_DEVICE(USB_VENDOR_ID_AIC, USB_DEVICE_ID_AIC_8800D84)},
+    {USB_DEVICE(USB_VENDOR_ID_AIC_V2, USB_DEVICE_ID_AIC_8800D84)},
     {}
 };
 
