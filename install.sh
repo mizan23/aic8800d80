@@ -766,7 +766,7 @@ verify_installation() {
 
     print_info "Checking for Bluetooth interfaces on combo adapters..."
     if command -v bluetoothctl &> /dev/null; then
-        bluetoothctl list 2>/dev/null || echo "No Bluetooth interfaces detected (normal for Wi-Fi-only adapters)"
+        timeout 2 bluetoothctl list < /dev/null 2>/dev/null || echo "No Bluetooth interfaces detected (normal for Wi-Fi-only adapters)"
     elif command -v hciconfig &> /dev/null; then
         hciconfig 2>/dev/null || echo "No Bluetooth interfaces detected (normal for Wi-Fi-only adapters)"
     else

@@ -60,7 +60,7 @@ echo ""
 
 echo "4. Bluetooth controllers:"
 if command -v bluetoothctl >/dev/null 2>&1; then
-    bluetoothctl list 2>/dev/null || echo "   No controller reported by bluetoothctl"
+    timeout 2 bluetoothctl list < /dev/null 2>/dev/null || echo "   No controller reported by bluetoothctl"
 elif command -v hciconfig >/dev/null 2>&1; then
     hciconfig -a 2>/dev/null || echo "   No controller reported by hciconfig"
 else
